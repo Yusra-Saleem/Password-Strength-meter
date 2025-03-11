@@ -50,8 +50,36 @@ st.markdown("""
     @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap');
     
     /* General styling */
-    body {
+    html, body, .main, .block-container, .stApp, .sidebar-content, .css-1d391kg, .css-1v3fvcr {
         background: linear-gradient(135deg, #0D0D13 0%, #13131E 100%);
+        color: #E0E0E0;
+    }
+    
+    /* Sidebar styling */
+    .sidebar .sidebar-content {
+        background: linear-gradient(135deg, #0D0D13 0%, #13131E 100%);
+        color: #E0E0E0;
+    }
+    
+    /* Input styling */
+    .stTextInput > div > div > input {
+        background-color: #1E1E1E;
+        color: #E0E0E0;
+        border: 1px solid #333;
+        border-radius: 5px;
+    }
+    
+    .stTextInput > div > div > input:focus {
+        border-color: #00FFBB;
+        box-shadow: 0 0 5px #00FFBB;
+    }
+    
+    .stTextInput > div > div > label {
+        color: #E0E0E0;
+    }
+    
+    .stTextInput > div > div > div {
+        color: #E0E0E0;
     }
     
     .main-header {

@@ -14,7 +14,7 @@ from password_insights import (
     get_password_hash_preview
 )
 
-# Set page configuration
+# Set page configuration - MUST BE FIRST st.command
 st.set_page_config(
     page_title="Password Strength Analyzer",
     page_icon="🔒",
@@ -50,474 +50,478 @@ st.markdown("""
     @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap');
     
     /* General styling */
-    html, body, .main, .block-container, .stApp, .sidebar-content, .css-1d391kg, .css-1v3fvcr {
-        background: linear-gradient(135deg, #0D0D13 0%, #13131E 100%);
-        color: #E0E0E0;
+    html, body, .main, .block-container, .stApp, .sidebar-content, .css-1d391kg, .css-1v3fvcr, .css-1lcbmhc, .css-1lcbmhc {
+        background: linear-gradient(135deg, #0D0D13 0%, #13131E 100%) !important;
+        color: #E0E0E0 !important;
     }
     
-    /* Sidebar styling */
-    .sidebar .sidebar-content {
-        background: linear-gradient(135deg, #0D0D13 0%, #13131E 100%);
-        color: #E0E0E0;
+    /* Sidebar styling - Updated selectors */
+    section[data-testid="stSidebar"] {
+        background: linear-gradient(135deg, #0D0D13 0%, #13131E 100%) !important;
+        border-right: 1px solid rgba(77, 101, 255, 0.2) !important;
+    }
+    
+    section[data-testid="stSidebar"] > div {
+        background: linear-gradient(135deg, #0D0D13 0%, #13131E 100%) !important;
     }
     
     /* Input styling */
     .stTextInput > div > div > input {
-        background-color: #1E1E1E;
-        color: #E0E0E0;
-        border: 1px solid #333;
-        border-radius: 5px;
+        background-color: #1E1E1E !important;
+        color: #E0E0E0 !important;
+        border: 1px solid #333 !important;
+        border-radius: 5px !important;
     }
     
     .stTextInput > div > div > input:focus {
-        border-color: #00FFBB;
-        box-shadow: 0 0 5px #00FFBB;
+        border-color: #00FFBB !important;
+        box-shadow: 0 0 5px #00FFBB !important;
     }
     
     .stTextInput > div > div > label {
-        color: #E0E0E0;
+        color: #E0E0E0 !important;
     }
     
     .stTextInput > div > div > div {
-        color: #E0E0E0;
+        color: #E0E0E0 !important;
     }
     
     .main-header {
-        font-family: 'Rajdhani', sans-serif;
-        font-size: 3.2rem;
-        font-weight: 700;
-        letter-spacing: 2px;
-        background: linear-gradient(90deg, #00FFBB 0%, #4D65FF 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-fill-color: transparent;
-        margin-bottom: 0.5rem;
-        text-shadow: 0 0 15px rgba(0, 255, 187, 0.7);
-        animation: pulse-glow 3s infinite alternate;
-        position: relative;
-        padding-top: 15px;
+        font-family: 'Rajdhani', sans-serif !important;
+        font-size: 3.2rem !important;
+        font-weight: 700 !important;
+        letter-spacing: 2px !important;
+        background: linear-gradient(90deg, #00FFBB 0%, #4D65FF 100%) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        background-clip: text !important;
+        text-fill-color: transparent !important;
+        margin-bottom: 0.5rem !important;
+        text-shadow: 0 0 15px rgba(0, 255, 187, 0.7) !important;
+        animation: pulse-glow 3s infinite alternate !important;
+        position: relative !important;
+        padding-top: 15px !important;
     }
     
     .main-header::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 80px;
-        height: 5px;
-        background: linear-gradient(90deg, #00FFBB, transparent);
-        border-radius: 5px;
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 80px !important;
+        height: 5px !important;
+        background: linear-gradient(90deg, #00FFBB, transparent) !important;
+        border-radius: 5px !important;
     }
     
     .main-header::after {
-        content: '';
-        position: absolute;
-        bottom: -10px;
-        right: 0;
-        width: 120px;
-        height: 3px;
-        background: linear-gradient(90deg, transparent, #4D65FF);
-        border-radius: 5px;
+        content: '' !important;
+        position: absolute !important;
+        bottom: -10px !important;
+        right: 0 !important;
+        width: 120px !important;
+        height: 3px !important;
+        background: linear-gradient(90deg, transparent, #4D65FF) !important;
+        border-radius: 5px !important;
     }
     
     @keyframes pulse-glow {
         0% {
-            text-shadow: 0 0 5px rgba(0, 255, 187, 0.3);
+            text-shadow: 0 0 5px rgba(0, 255, 187, 0.3) !important;
         }
         50% {
-            text-shadow: 0 0 15px rgba(0, 255, 187, 0.5), 0 0 30px rgba(77, 101, 255, 0.3);
+            text-shadow: 0 0 15px rgba(0, 255, 187, 0.5), 0 0 30px rgba(77, 101, 255, 0.3) !important;
         }
         100% {
-            text-shadow: 0 0 20px rgba(0, 255, 187, 0.7), 0 0 40px rgba(77, 101, 255, 0.5);
+            text-shadow: 0 0 20px rgba(0, 255, 187, 0.7), 0 0 40px rgba(77, 101, 255, 0.5) !important;
         }
     }
     
     .sub-header {
-        font-size: 1.5rem;
-        color: rgba(233, 233, 242, 0.8);
-        margin-bottom: 1.5rem;
-        margin-top: 1rem;
-        font-family: 'Outfit', sans-serif;
-        font-weight: 300;
-        letter-spacing: 0.5px;
-        position: relative;
-        padding-left: 15px;
-        border-left: 3px solid #4D65FF;
+        font-size: 1.5rem !important;
+        color: rgba(233, 233, 242, 0.8) !important;
+        margin-bottom: 1.5rem !important;
+        margin-top: 1rem !important;
+        font-family: 'Outfit', sans-serif !important;
+        font-weight: 300 !important;
+        letter-spacing: 0.5px !important;
+        position: relative !important;
+        padding-left: 15px !important;
+        border-left: 3px solid #4D65FF !important;
     }
     
     .password-input-label {
-        font-family: 'Rajdhani', sans-serif;
-        font-size: 1.3rem;
-        font-weight: 600;
-        margin-bottom: 0.8rem;
-        color: #E9E9F2;
-        letter-spacing: 0.5px;
-        display: flex;
-        align-items: center;
-        position: relative;
+        font-family: 'Rajdhani', sans-serif !important;
+        font-size: 1.3rem !important;
+        font-weight: 600 !important;
+        margin-bottom: 0.8rem !important;
+        color: #E9E9F2 !important;
+        letter-spacing: 0.5px !important;
+        display: flex !important;
+        align-items: center !important;
+        position: relative !important;
     }
     
     .password-input-label::before {
-        content: '>';
-        color: #00FFBB;
-        margin-right: 8px;
-        font-weight: 700;
-        animation: cursor-blink 1s infinite;
+        content: '>' !important;
+        color: #00FFBB !important;
+        margin-right: 8px !important;
+        font-weight: 700 !important;
+        animation: cursor-blink 1s infinite !important;
     }
     
     @keyframes cursor-blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0; }
+        0%, 100% { opacity: 1 !important; }
+        50% { opacity: 0 !important; }
     }
     
     /* Modern card styling with glowing borders */
     .result-section {
-        background: linear-gradient(135deg, #171722 0%, #20203A 100%);
-        border-radius: 8px;
-        padding: 25px;
-        margin: 15px 0;
-        border: 1px solid rgba(77, 101, 255, 0.3);
-        position: relative;
-        overflow: hidden;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        background: linear-gradient(135deg, #171722 0%, #20203A 100%) !important;
+        border-radius: 8px !important;
+        padding: 25px !important;
+        margin: 15px 0 !important;
+        border: 1px solid rgba(77, 101, 255, 0.3) !important;
+        position: relative !important;
+        overflow: hidden !important;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5) !important;
     }
     
     .result-section::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, #00FFBB, #4D65FF);
-        opacity: 0.8;
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        height: 3px !important;
+        background: linear-gradient(90deg, #00FFBB, #4D65FF) !important;
+        opacity: 0.8 !important;
     }
     
     .result-section:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
-        border-color: rgba(77, 101, 255, 0.6);
+        transform: translateY(-5px) !important;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6) !important;
+        border-color: rgba(77, 101, 255, 0.6) !important;
     }
     
     .result-section:hover::before {
-        opacity: 1;
-        animation: border-flow 2s linear infinite;
+        opacity: 1 !important;
+        animation: border-flow 2s linear infinite !important;
     }
     
     @keyframes border-flow {
-        0% { background-position: 0% 0; }
-        100% { background-position: 100% 0; }
+        0% { background-position: 0% 0 !important; }
+        100% { background-position: 100% 0 !important; }
     }
     
     .strength-header {
-        font-family: 'Rajdhani', sans-serif;
-        font-size: 1.5rem;
-        font-weight: 700;
-        margin-bottom: 0.8rem;
-        color: #00FFBB;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        position: relative;
-        display: inline-block;
-        padding-bottom: 5px;
+        font-family: 'Rajdhani', sans-serif !important;
+        font-size: 1.5rem !important;
+        font-weight: 700 !important;
+        margin-bottom: 0.8rem !important;
+        color: #00FFBB !important;
+        letter-spacing: 1px !important;
+        text-transform: uppercase !important;
+        position: relative !important;
+        display: inline-block !important;
+        padding-bottom: 5px !important;
     }
     
     .strength-header::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 60%;
-        height: 2px;
-        background: linear-gradient(90deg, #00FFBB, transparent);
+        content: '' !important;
+        position: absolute !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        width: 60% !important;
+        height: 2px !important;
+        background: linear-gradient(90deg, #00FFBB, transparent) !important;
     }
     
     .warning {
-        color: #FF416C;
-        font-weight: bold;
-        background: rgba(255, 65, 108, 0.1);
-        padding: 12px 15px;
-        border-radius: 5px;
-        border-left: 3px solid #FF416C;
-        display: flex;
-        align-items: center;
-        margin: 15px 0;
+        color: #FF416C !important;
+        font-weight: bold !important;
+        background: rgba(255, 65, 108, 0.1) !important;
+        padding: 12px 15px !important;
+        border-radius: 5px !important;
+        border-left: 3px solid #FF416C !important;
+        display: flex !important;
+        align-items: center !important;
+        margin: 15px 0 !important;
     }
     
     .tip-title {
-        font-weight: bold;
-        font-size: 1.1rem;
-        margin-bottom: 0.5rem;
-        color: #FF00FF;
-        text-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
+        font-weight: bold !important;
+        font-size: 1.1rem !important;
+        margin-bottom: 0.5rem !important;
+        color: #FF00FF !important;
+        text-shadow: 0 0 5px rgba(255, 0, 255, 0.5) !important;
     }
     
     .tip-item {
-        margin-bottom: 0.3rem;
-        transition: all 0.2s ease;
+        margin-bottom: 0.3rem !important;
+        transition: all 0.2s ease !important;
     }
     
     .footer {
-        margin-top: 3rem;
-        text-align: center;
-        color: #757575;
-        font-size: 0.9rem;
+        margin-top: 3rem !important;
+        text-align: center !important;
+        color: #757575 !important;
+        font-size: 0.9rem !important;
     }
     
     /* Modern Cyberpunk Button Style */
     .stButton > button {
-        background: linear-gradient(135deg, rgba(0, 255, 187, 0.1) 0%, rgba(77, 101, 255, 0.1) 100%);
-        color: #00FFBB;
-        font-weight: 600;
-        border-radius: 4px;
-        padding: 0.8rem 1.5rem;
-        border: 1px solid rgba(0, 255, 187, 0.3);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        font-family: 'Rajdhani', sans-serif;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        position: relative;
-        overflow: hidden;
-        z-index: 1;
+        background: linear-gradient(135deg, rgba(0, 255, 187, 0.1) 0%, rgba(77, 101, 255, 0.1) 100%) !important;
+        color: #00FFBB !important;
+        font-weight: 600 !important;
+        border-radius: 4px !important;
+        padding: 0.8rem 1.5rem !important;
+        border: 1px solid rgba(0, 255, 187, 0.3) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+        font-family: 'Rajdhani', sans-serif !important;
+        letter-spacing: 1.5px !important;
+        text-transform: uppercase !important;
+        position: relative !important;
+        overflow: hidden !important;
+        z-index: 1 !important;
     }
     
     .stButton > button::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, rgba(0, 255, 187, 0.4) 0%, rgba(77, 101, 255, 0.4) 100%);
-        opacity: 0;
-        z-index: -1;
-        transition: opacity 0.3s ease;
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background: linear-gradient(135deg, rgba(0, 255, 187, 0.4) 0%, rgba(77, 101, 255, 0.4) 100%) !important;
+        opacity: 0 !important;
+        z-index: -1 !important;
+        transition: opacity 0.3s ease !important;
     }
     
     .stButton > button::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        background: linear-gradient(90deg, #00FFBB, #4D65FF);
-        transform: scaleX(0);
-        transform-origin: right;
-        transition: transform 0.4s ease;
+        content: '' !important;
+        position: absolute !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 3px !important;
+        background: linear-gradient(90deg, #00FFBB, #4D65FF) !important;
+        transform: scaleX(0) !important;
+        transform-origin: right !important;
+        transition: transform 0.4s ease !important;
     }
     
     .stButton > button:hover {
-        transform: translateY(-3px) scale(1.02);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        border-color: rgba(0, 255, 187, 0.6);
-        color: white;
+        transform: translateY(-3px) scale(1.02) !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+        border-color: rgba(0, 255, 187, 0.6) !important;
+        color: white !important;
     }
     
     .stButton > button:hover::before {
-        opacity: 1;
+        opacity: 1 !important;
     }
     
     .stButton > button:hover::after {
-        transform: scaleX(1);
-        transform-origin: left;
+        transform: scaleX(1) !important;
+        transform-origin: left !important;
     }
     
     .stButton > button:active {
-        transform: translateY(0) scale(0.98);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        transform: translateY(0) scale(0.98) !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
     }
     
     /* Section Headers */
     .real-time-header {
-        font-family: 'Rajdhani', sans-serif;
-        color: #4D65FF;
-        font-weight: 600;
-        font-size: 1.3rem;
-        margin-top: 2rem;
-        margin-bottom: 0.8rem;
-        letter-spacing: 1px;
-        display: flex;
-        align-items: center;
-        text-transform: uppercase;
+        font-family: 'Rajdhani', sans-serif !important;
+        color: #4D65FF !important;
+        font-weight: 600 !important;
+        font-size: 1.3rem !important;
+        margin-top: 2rem !important;
+        margin-bottom: 0.8rem !important;
+        letter-spacing: 1px !important;
+        display: flex !important;
+        align-items: center !important;
+        text-transform: uppercase !important;
     }
     
     .real-time-header::before {
-        content: '';
-        display: inline-block;
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #00FFBB 0%, #4D65FF 100%);
-        margin-right: 10px;
-        box-shadow: 0 0 10px rgba(0, 255, 187, 0.5);
-        animation: pulse 2s infinite;
+        content: '' !important;
+        display: inline-block !important;
+        width: 15px !important;
+        height: 15px !important;
+        border-radius: 50% !important;
+        background: linear-gradient(135deg, #00FFBB 0%, #4D65FF 100%) !important;
+        margin-right: 10px !important;
+        box-shadow: 0 0 10px rgba(0, 255, 187, 0.5) !important;
+        animation: pulse 2s infinite !important;
     }
     
     @keyframes pulse {
-        0% { transform: scale(1); opacity: 1; }
-        50% { transform: scale(1.2); opacity: 0.7; }
-        100% { transform: scale(1); opacity: 1; }
+        0% { transform: scale(1) !important; opacity: 1 !important; }
+        50% { transform: scale(1.2) !important; opacity: 0.7 !important; }
+        100% { transform: scale(1) !important; opacity: 1 !important; }
     }
     
     /* Strength Colors with Neon Effect */
     .strength-weak {
-        color: #FF073A;
-        text-shadow: 0 0 5px #FF073A;
+        color: #FF073A !important;
+        text-shadow: 0 0 5px #FF073A !important;
     }
     
     .strength-medium {
-        color: #FFAA00;
-        text-shadow: 0 0 5px #FFAA00;
+        color: #FFAA00 !important;
+        text-shadow: 0 0 5px #FFAA00 !important;
     }
     
     .strength-strong {
-        color: #00FF66;
-        text-shadow: 0 0 5px #00FF66;
+        color: #00FF66 !important;
+        text-shadow: 0 0 5px #00FF66 !important;
     }
     
     /* Password History Styling */
     .history-container {
-        background-color: #1E1E1E;
-        border-radius: 10px;
-        padding: 15px;
-        margin-top: 20px;
-        border: 1px solid #333;
-        box-shadow: 0 0 5px rgba(0, 255, 102, 0.2);
+        background-color: #1E1E1E !important;
+        border-radius: 10px !important;
+        padding: 15px !important;
+        margin-top: 20px !important;
+        border: 1px solid #333 !important;
+        box-shadow: 0 0 5px rgba(0, 255, 102, 0.2) !important;
     }
     
     .history-header {
-        color: #00FFFF;
-        font-weight: bold;
-        text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
-        font-size: 1.2rem;
-        margin-bottom: 10px;
+        color: #00FFFF !important;
+        font-weight: bold !important;
+        text-shadow: 0 0 5px rgba(0, 255, 255, 0.5) !important;
+        font-size: 1.2rem !important;
+        margin-bottom: 10px !important;
     }
     
     .history-item {
-        padding: 8px;
-        margin-bottom: 8px;
-        border-radius: 5px;
-        background-color: #2A2A2A;
-        transition: all 0.2s ease;
-        border-left: 3px solid;
+        padding: 8px !important;
+        margin-bottom: 8px !important;
+        border-radius: 5px !important;
+        background-color: #2A2A2A !important;
+        transition: all 0.2s ease !important;
+        border-left: 3px solid !important;
     }
     
     .history-item:hover {
-        transform: translateX(5px);
-        box-shadow: 0 0 8px rgba(0, 255, 102, 0.3);
+        transform: translateX(5px) !important;
+        box-shadow: 0 0 8px rgba(0, 255, 102, 0.3) !important;
     }
     
     .history-weak {
-        border-left-color: #FF073A;
+        border-left-color: #FF073A !important;
     }
     
     .history-medium {
-        border-left-color: #FFAA00;
+        border-left-color: #FFAA00 !important;
     }
     
     .history-strong {
-        border-left-color: #00FF66;
+        border-left-color: #00FF66 !important;
     }
     
     .clear-button {
-        background-color: #333;
-        color: #FF073A;
-        border: none;
-        padding: 5px 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 0.8rem;
-        transition: all 0.2s ease;
+        background-color: #333 !important;
+        color: #FF073A !important;
+        border: none !important;
+        padding: 5px 10px !important;
+        border-radius: 5px !important;
+        cursor: pointer !important;
+        font-size: 0.8rem !important;
+        transition: all 0.2s ease !important;
     }
     
     .clear-button:hover {
-        background-color: #FF073A;
-        color: #121212;
+        background-color: #FF073A !important;
+        color: #121212 !important;
     }
     
     /* Fun result message styling */
     .fun-result {
-        margin-top: 15px;
-        font-size: 1.2rem;
-        font-weight: bold;
-        padding: 10px;
-        border-radius: 5px;
-        text-align: center;
-        animation: fadeIn 0.5s ease;
+        margin-top: 15px !important;
+        font-size: 1.2rem !important;
+        font-weight: bold !important;
+        padding: 10px !important;
+        border-radius: 5px !important;
+        text-align: center !important;
+        animation: fadeIn 0.5s ease !important;
     }
     
     @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-10px); }
-        to { opacity: 1; transform: translateY(0); }
+        from { opacity: 0 !important; transform: translateY(-10px) !important; }
+        to { opacity: 1 !important; transform: translateY(0) !important; }
     }
     
     /* Modern sidebar section styling */
     .custom-section {
-        background: linear-gradient(135deg, #171722 0%, #1A1A2E 100%);
-        border-radius: 8px;
-        padding: 20px 15px;
-        margin-top: 20px;
-        border: 1px solid rgba(77, 101, 255, 0.2);
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        background: linear-gradient(135deg, #171722 0%, #1A1A2E 100%) !important;
+        border-radius: 8px !important;
+        padding: 20px 15px !important;
+        margin-top: 20px !important;
+        border: 1px solid rgba(77, 101, 255, 0.2) !important;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+        position: relative !important;
+        overflow: hidden !important;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
     }
     
     .custom-section::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: linear-gradient(90deg, #00FFBB, #4D65FF);
-        opacity: 0.5;
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        height: 2px !important;
+        background: linear-gradient(90deg, #00FFBB, #4D65FF) !important;
+        opacity: 0.5 !important;
     }
     
     .custom-section:hover {
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        transform: translateY(-3px);
-        border-color: rgba(77, 101, 255, 0.4);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+        transform: translateY(-3px) !important;
+        border-color: rgba(77, 101, 255, 0.4) !important;
     }
     
     .custom-section:hover::before {
-        opacity: 1;
+        opacity: 1 !important;
     }
     
     .custom-section-header {
-        font-family: 'Rajdhani', sans-serif;
-        font-weight: 600;
-        font-size: 1.2rem;
-        color: #00FFBB;
-        margin-bottom: 15px;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-        display: flex;
-        align-items: center;
-        border-bottom: 1px solid rgba(77, 101, 255, 0.2);
-        padding-bottom: 10px;
+        font-family: 'Rajdhani', sans-serif !important;
+        font-weight: 600 !important;
+        font-size: 1.2rem !important;
+        color: #00FFBB !important;
+        margin-bottom: 15px !important;
+        letter-spacing: 0.5px !important;
+        text-transform: uppercase !important;
+        display: flex !important;
+        align-items: center !important;
+        border-bottom: 1px solid rgba(77, 101, 255, 0.2) !important;
+        padding-bottom: 10px !important;
     }
     
     .custom-section-header::before {
-        content: '';
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        background: linear-gradient(135deg, #00FFBB, #4D65FF);
-        margin-right: 8px;
-        border-radius: 2px;
-        transform: rotate(45deg);
+        content: '' !important;
+        display: inline-block !important;
+        width: 10px !important;
+        height: 10px !important;
+        background: linear-gradient(135deg, #00FFBB, #4D65FF) !important;
+        margin-right: 8px !important;
+        border-radius: 2px !important;
+        transform: rotate(45deg) !important;
     }
     
     /* Make st.progress bars more neon with better contrast */
     div.stProgress > div > div {
         background-color: #00FFBB !important;
-        box-shadow: 0 0 8px #00FFBB;
+        box-shadow: 0 0 8px #00FFBB !important;
     }
     
     /* Override streamlit progress bar text to ensure better visibility */
@@ -531,12 +535,12 @@ st.markdown("""
     
     /* Improve visibility of all text in result sections */
     .result-section {
-        background: transparent;
-        border-radius: 8px;
-        padding: 20px;
-        margin: 15px 0;
-        border: 1px solid rgba(0, 255, 187, 0.4);
-        box-shadow: 0 0 15px rgba(0, 255, 187, 0.15);
+        background: transparent !important;
+        border-radius: 8px !important;
+        padding: 20px !important;
+        margin: 15px 0 !important;
+        border: 1px solid rgba(0, 255, 187, 0.4) !important;
+        box-shadow: 0 0 15px rgba(0, 255, 187, 0.15) !important;
     }
     
     .result-section p, .result-section li {
@@ -557,38 +561,86 @@ st.markdown("""
     /* Better styling for markdown headers */
     h3, h4 {
         color: #00FFBB !important;
-        text-shadow: 0 0 10px rgba(0, 255, 187, 0.3);
-        letter-spacing: 0.5px;
+        text-shadow: 0 0 10px rgba(0, 255, 187, 0.3) !important;
+        letter-spacing: 0.5px !important;
     }
     
     /* Tooltip hover effect */
     .tooltip {
-        position: relative;
-        display: inline-block;
+        position: relative !important;
+        display: inline-block !important;
     }
     
     .tooltip .tooltiptext {
-        visibility: hidden;
-        width: 120px;
-        background-color: #2A2A2A;
-        color: #E0E0E0;
-        text-align: center;
-        border-radius: 6px;
-        padding: 5px;
-        position: absolute;
-        z-index: 1;
-        bottom: 125%;
-        left: 50%;
-        margin-left: -60px;
-        opacity: 0;
-        transition: opacity 0.3s;
-        font-size: 0.8rem;
-        border: 1px solid #00FF66;
+        visibility: hidden !important;
+        width: 120px !important;
+        background-color: #2A2A2A !important;
+        color: #E0E0E0 !important;
+        text-align: center !important;
+        border-radius: 6px !important;
+        padding: 5px !important;
+        position: absolute !important;
+        z-index: 1 !important;
+        bottom: 125% !important;
+        left: 50% !important;
+        margin-left: -60px !important;
+        opacity: 0 !important;
+        transition: opacity 0.3s !important;
+        font-size: 0.8rem !important;
+        border: 1px solid #00FF66 !important;
     }
     
     .tooltip:hover .tooltiptext {
-        visibility: visible;
-        opacity: 1;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    /* Override progress bar text styling */
+    div.stProgress > div > div > div {
+        background-color: rgba(45, 45, 45, 0.8) !important;  /* Muted gray background */
+        color: #E0E0E0 !important;  /* Light text color for better visibility */
+        font-weight: 600 !important;
+        padding: 4px 8px !important;
+        border-radius: 4px !important;
+        text-shadow: none !important;  /* Remove text shadow */
+        margin: 0 4px !important;
+    }
+    
+    /* Add this CSS for the fixed footer */
+    .fixed-footer {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        background: linear-gradient(90deg, #0D0D13, #13131E) !important;
+        padding: 10px 20px !important;
+        text-align: center !important;
+        border-top: 1px solid rgba(77, 101, 255, 0.2) !important;
+        z-index: 999 !important;
+        backdrop-filter: blur(10px) !important;
+    }
+    
+    .footer-content {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        max-width: 1200px !important;
+        margin: 0 auto !important;
+        color: #757575 !important;
+        font-size: 0.9rem !important;
+    }
+    
+    .footer-name {
+        color: #00FFBB !important;
+        font-family: 'Rajdhani', sans-serif !important;
+        font-weight: 600 !important;
+        letter-spacing: 1px !important;
+        text-shadow: 0 0 5px rgba(0, 255, 187, 0.3) !important;
+    }
+    
+    /* Add padding to main content to prevent footer overlap */
+    .block-container {
+        padding-bottom: 60px !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -695,13 +747,36 @@ with st.sidebar:
     # Security Facts Section
     elif st.session_state.active_section == 'facts':
         st.markdown('<div class="custom-section-header">🧠 Security Facts</div>', unsafe_allow_html=True)
-        facts = get_security_facts()
+        
+        # Hardcoded security facts as fallback
+        security_facts = [
+            "90% of passwords can be cracked within 6 hours.",
+            "The most common password '123456' is used by over 23 million accounts worldwide.",
+            "It would take a computer about 7.5 million years to crack a 12-character password with numbers, symbols, and upper and lowercase letters.",
+            "The average person has 100 passwords across different accounts.",
+            "Using a password manager can reduce your risk of getting hacked by up to 45%.",
+            "Two-factor authentication can prevent 99.9% of automated attacks.",
+            "Passwords with personal information are 35% more likely to be cracked.",
+            "The most secure passwords are actually long phrases rather than complex short combinations."
+        ]
+        
+        # Try to get facts from function, if fails use hardcoded facts
+        facts = get_security_facts() or security_facts
         
         # Create tabs for navigating facts
-        fact_tabs = st.tabs(["Fact " + str(i+1) for i in range(min(5, len(facts)))])
-        for i, tab in enumerate(fact_tabs):
-            with tab:
-                st.info(facts[i])
+        if facts:
+            fact_tabs = st.tabs(["Fact " + str(i+1) for i in range(min(5, len(facts)))])
+            for i, tab in enumerate(fact_tabs):
+                with tab:
+                    st.info(facts[i])
+                    # Add a "Did you know?" prefix to make it more engaging
+                    st.markdown("""
+                    <div style="text-align: right; color: #00FFBB; font-size: 0.8em; margin-top: 5px;">
+                        💡 The more you know!
+                    </div>
+                    """, unsafe_allow_html=True)
+        else:
+            st.info("Security facts are currently being updated. Please check back later!")
     
     # Hash Visualization Section
     elif st.session_state.active_section == 'visualization':
@@ -791,8 +866,7 @@ if password:
         
         # Basic length check
         length = len(password)
-        length_percent = min(100, (length / 16) * 100)  # 16 chars is 100%
-        
+
         if length < 8:
             length_color = "#FF4B4B"  # Red
             length_msg = f"Too short ({length} chars) - minimum 8 characters recommended"
@@ -802,9 +876,9 @@ if password:
         else:
             length_color = "#00CC66"  # Green
             length_msg = f"Good length ({length} chars)"
-        
+
         st.markdown("*Length:*")
-        st.progress(length_percent/100, text=length_msg)
+        st.markdown(f'<div style="color: {length_color}; padding: 4px 8px; font-weight: 600;">{length_msg}</div>', unsafe_allow_html=True)
         
         # Basic character type checks
         st.markdown("*Character Types:*")
@@ -835,17 +909,19 @@ if password:
         
         # Calculate overall complexity
         complexity_score = sum([has_upper, has_lower, has_digit, has_special])
-        complexity_percent = (complexity_score / 4) * 100
-        
+
         if complexity_score <= 2:
+            complexity_color = "#FF4B4B"
             complexity_text = "Low complexity - add more character types"
         elif complexity_score == 3:
+            complexity_color = "#FFA500"
             complexity_text = "Medium complexity - good mix of characters"
         else:
+            complexity_color = "#00CC66"
             complexity_text = "High complexity - excellent character variety"
-        
+
         st.markdown("*Overall Complexity:*")
-        st.progress(complexity_percent/100, text=complexity_text)
+        st.markdown(f'<div style="color: {complexity_color}; padding: 4px 8px; font-weight: 600;">{complexity_text}</div>', unsafe_allow_html=True)
         
         st.markdown('</div>', unsafe_allow_html=True)
 
@@ -1011,5 +1087,12 @@ if check_button and password:
         
     st.markdown('</div>', unsafe_allow_html=True)
 
-# Footer
-st.markdown('<div class="footer">This tool is for educational purposes only. Always use unique passwords and a password manager.</div>', unsafe_allow_html=True)
+# Add this CSS for the fixed footer
+st.markdown("""
+<footer class="fixed-footer">
+    <div class="footer-content">
+        <div>This tool is for educational purposes only. Always use unique passwords and a password manager.</div>
+        <div class="footer-name">Created by Yusra-Saleem</div>
+            </div>
+</footer>
+        """, unsafe_allow_html=True)
